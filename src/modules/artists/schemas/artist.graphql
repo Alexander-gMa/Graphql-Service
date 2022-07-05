@@ -6,7 +6,7 @@ type Artist {
   birthDate: String
   birthPlace: String
   country: String
-  bands: [Band]
+  # bands: [Band]
   instruments: [String]
 }
 
@@ -36,7 +36,7 @@ type Query {
 }
 
 type Mutation {
-  regNewArtist(newArtist: Artist!): Artist
+  regNewArtist(newArtist: CreateArtist!): Artist
   updateExistingArtist(id:ID!, artist: UpdateArtist!): Artist
 #   deleteExistingArtist(id:ID!): DEL
 }

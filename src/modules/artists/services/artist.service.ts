@@ -13,7 +13,6 @@ export class ArtistService {
         const res = await this.artistInstance.get('/', {
             params: { limit, offset }
         })
-
         return res.data.items
     }
 
