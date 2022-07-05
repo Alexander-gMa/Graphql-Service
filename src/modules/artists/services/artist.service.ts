@@ -6,7 +6,7 @@ export class ArtistService {
     private artistInstance: AxiosInstance;
 
     constructor() {
-        this.artistInstance = axios.create({ baseURL: process.env.ARTIST_URL });
+        this.artistInstance = axios.create({ baseURL: 'http://localhost:3002/v1/artists' });
     }
 
     async getAllArtist(limit: number, offset: number) {

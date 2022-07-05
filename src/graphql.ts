@@ -50,7 +50,6 @@ export interface IQuery {
     artists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Artists> | Promise<Nullable<Artists>>;
     user(id: string): Nullable<User> | Promise<Nullable<User>>;
     login(email: string, password: string): Nullable<JWT> | Promise<Nullable<JWT>>;
-    abc(): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export interface IMutation {

@@ -13,7 +13,6 @@ type JWT {
 type Query {
   user(id: ID!): User
   login(email: String!, password: String!): JWT
-  abc: User
 }
 
 input UserInput {
