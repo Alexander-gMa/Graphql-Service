@@ -3,6 +3,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path'
 import { UsersModule } from './modules/users/user.module';
+import { ArtistModule } from './modules/artists/artist.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { UsersModule } from './modules/users/user.module';
       },
     }),
     UsersModule,
+    ArtistModule,
   ],
 })
 export class AppModule { }
