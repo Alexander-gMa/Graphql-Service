@@ -10,10 +10,6 @@ type Artist {
   instruments: [String]
 }
 
-type Artists {
-  items: [Artist]
-}
-
 input CreateArtist {
   firstName: String!
   secondName: String!
@@ -32,7 +28,7 @@ input UpdateArtist {
 
 type Query {
   artist(id: ID!): Artist
-  artists(limit: Int, offset: Int): Artists
+  artists(limit: Int, offset: Int): [Artist]
 }
 
 type Mutation {
