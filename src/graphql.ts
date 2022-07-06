@@ -42,13 +42,9 @@ export interface Artist {
     instruments?: Nullable<Nullable<string>[]>;
 }
 
-export interface Artists {
-    items?: Nullable<Nullable<Artist>[]>;
-}
-
 export interface IQuery {
     artist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
-    artists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Artists> | Promise<Nullable<Artists>>;
+    artists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Artist>[]> | Promise<Nullable<Nullable<Artist>[]>>;
     band(id: string): Nullable<Band> | Promise<Nullable<Band>>;
     bands(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Band>[]> | Promise<Nullable<Nullable<Band>[]>>;
     user(id: string): Nullable<User> | Promise<Nullable<User>>;
