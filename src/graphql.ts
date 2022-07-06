@@ -38,6 +38,7 @@ export interface Artist {
     birthDate?: Nullable<string>;
     birthPlace?: Nullable<string>;
     country?: Nullable<string>;
+    bands?: Nullable<Nullable<Band>[]>;
     instruments?: Nullable<Nullable<string>[]>;
 }
 
@@ -48,6 +49,8 @@ export interface Artists {
 export interface IQuery {
     artist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
     artists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Artists> | Promise<Nullable<Artists>>;
+    band(id: string): Nullable<Band> | Promise<Nullable<Band>>;
+    bands(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Band>[]> | Promise<Nullable<Nullable<Band>[]>>;
     user(id: string): Nullable<User> | Promise<Nullable<User>>;
     jwt(email: string, password: string): Nullable<JWT> | Promise<Nullable<JWT>>;
 }
@@ -56,6 +59,20 @@ export interface IMutation {
     regNewArtist(newArtist: CreateArtist): Nullable<Artist> | Promise<Nullable<Artist>>;
     updateExistingArtist(id: string, artist: UpdateArtist): Nullable<Artist> | Promise<Nullable<Artist>>;
     register(user: UserInput): Nullable<User> | Promise<Nullable<User>>;
+}
+
+export interface Band {
+    id: string;
+    name?: Nullable<string>;
+    origin?: Nullable<string>;
+    members?: Nullable<Nullable<Member>[]>;
+    website?: Nullable<string>;
+}
+
+export interface Member {
+    artist?: Nullable<string>;
+    instrument?: Nullable<string>;
+    years?: Nullable<string>;
 }
 
 export interface User {
