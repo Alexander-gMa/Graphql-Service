@@ -8,14 +8,14 @@ export class BandResolver {
     constructor(private bandService: BandService) { }
 
     @Query('bands')
-    async getAllArtist(
+    async getAllBand(
         @Args('limit', { defaultValue: 5 }) limit: number,
         @Args('offset', { defaultValue: 0 }) offset: number) {
         return this.bandService.getAllBand(limit, offset);
     }
 
     @Query('band')
-    async getArtistByID(@Args('id') id: string) {
+    async getBandByID(@Args('id') id: string) {
         return this.bandService.getBandByID(id);
     }
 
