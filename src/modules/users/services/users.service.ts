@@ -7,7 +7,7 @@ export class UsersService {
     private userInstance: AxiosInstance;
 
     constructor() {
-        this.userInstance = axios.create({ baseURL: process.env.USERS_URL });
+        this.userInstance = axios.create({ baseURL: 'http://localhost:3004/v1/users' });
     }
 
     async register(user: UserInput) {
@@ -22,12 +22,12 @@ export class UsersService {
         return res.data;
     }
 
-    async login(email: string, password: string) {
+    async jwt(email: string, password: string) {
         const res = await this.userInstance.post<{ jwt: string }>(`/login`, {
             email,
             password,
         });
 
-        return res.data.jwt;
+        return res.data;
     }
 }

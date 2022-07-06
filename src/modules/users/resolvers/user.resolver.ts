@@ -12,9 +12,9 @@ export class UsersResolver {
         return this.usersService.getById(id);
     }
 
-    @Query('login')
+    @Query('jwt')
     jwt(@Args('email') email: string, @Args('password') password: string) {
-        return this.usersService.login(email, password);
+        return this.usersService.jwt(email, password);
     }
 
     @Mutation('register')

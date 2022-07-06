@@ -49,7 +49,7 @@ export interface IQuery {
     artist(id: string): Nullable<Artist> | Promise<Nullable<Artist>>;
     artists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Artists> | Promise<Nullable<Artists>>;
     user(id: string): Nullable<User> | Promise<Nullable<User>>;
-    login(email: string, password: string): Nullable<JWT> | Promise<Nullable<JWT>>;
+    jwt(email: string, password: string): Nullable<JWT> | Promise<Nullable<JWT>>;
 }
 
 export interface IMutation {
