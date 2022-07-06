@@ -7,7 +7,9 @@ export class ArtistResolver {
     constructor(private artistService: ArtistService) { }
 
     @Query('artists')
-    async getAllArtist(@Args('limit') limit: number, @Args('offset') offset: number) {
+    async getAllArtist(
+        @Args('limit', { defaultValue: 5 }) limit: number,
+        @Args('offset', { defaultValue: 5 }) offset: number) {
         return this.artistService.getAllArtist(limit, offset);
     }
 
