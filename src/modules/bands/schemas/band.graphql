@@ -1,5 +1,5 @@
 type Band {
-    id: ID!
+    _id: ID!
     name: String
     origin: String
     members: [Member]
