@@ -10,7 +10,7 @@ export class GenreResolver {
     async getAllGenre(
         @Args('limit', { defaultValue: 5 }) limit: number,
         @Args('offset', { defaultValue: 0 }) offset: number) {
-        return this.genreService.getAllGenre(limit, offset);
+        return this.genreService.getAllGenres(limit, offset);
     }
 
     @Query('genre')

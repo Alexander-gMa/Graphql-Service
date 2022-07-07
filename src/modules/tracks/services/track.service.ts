@@ -9,7 +9,7 @@ export class TrackService {
         this.trackInstance = axios.create({ baseURL: 'http://localhost:3006/v1/tracks' });
     }
 
-    async getAllTrack(limit: number, offset: number) {
+    async getAllTracks(limit: number, offset: number) {
         const res = await this.trackInstance.get('/', {
             params: { limit, offset }
         })

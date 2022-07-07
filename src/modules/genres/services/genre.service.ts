@@ -9,7 +9,7 @@ export class GenreService {
         this.genreInstance = axios.create({ baseURL: 'http://localhost:3001/v1/genres' });
     }
 
-    async getAllGenre(limit: number, offset: number) {
+    async getAllGenres(limit: number, offset: number) {
         const res = await this.genreInstance.get('/', {
             params: { limit, offset }
         })

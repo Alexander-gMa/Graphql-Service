@@ -10,7 +10,7 @@ export class ArtistResolver {
     async getAllArtist(
         @Args('limit', { defaultValue: 5 }) limit: number,
         @Args('offset', { defaultValue: 0 }) offset: number) {
-        return this.artistService.getAllArtist(limit, offset);
+        return this.artistService.getAllArtists(limit, offset);
     }
 
     @Query('artist')

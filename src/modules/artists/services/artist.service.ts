@@ -9,7 +9,7 @@ export class ArtistService {
         this.artistInstance = axios.create({ baseURL: 'http://localhost:3002/v1/artists' });
     }
 
-    async getAllArtist(limit: number, offset: number) {
+    async getAllArtists(limit: number, offset: number) {
         const res = await this.artistInstance.get('/', {
             params: { limit, offset }
         })

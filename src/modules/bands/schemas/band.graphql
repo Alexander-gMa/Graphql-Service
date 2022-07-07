@@ -7,12 +7,6 @@ type Band {
     genres: [Genre]
 }
 
-type Member {
-    artist:String
-    instrument: String
-    years: String
-}
-
 type Query {
   band(id: ID!): Band
   bands(limit: Int, offset: Int): [Band]

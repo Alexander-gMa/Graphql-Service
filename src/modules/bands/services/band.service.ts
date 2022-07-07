@@ -9,7 +9,7 @@ export class BandService {
         this.bandInstance = axios.create({ baseURL: 'http://localhost:3003/v1/bands' });
     }
 
-    async getAllBand(limit: number, offset: number) {
+    async getAllBands(limit: number, offset: number) {
         const res = await this.bandInstance.get('/', {
             params: { limit, offset }
         })

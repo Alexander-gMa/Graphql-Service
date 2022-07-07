@@ -1,8 +1,6 @@
 import { Args, Mutation, Resolver, Query, } from '@nestjs/graphql';
 import { TrackService } from '../services/track.service';
 
-
-
 @Resolver('Track')
 export class TrackResolver {
     constructor(private trackService: TrackService) { }
@@ -11,7 +9,7 @@ export class TrackResolver {
     async getAllBand(
         @Args('limit', { defaultValue: 5 }) limit: number,
         @Args('offset', { defaultValue: 0 }) offset: number) {
-        return this.trackService.getAllTrack(limit, offset);
+        return this.trackService.getAllTracks(limit, offset);
     }
 
     @Query('track')
