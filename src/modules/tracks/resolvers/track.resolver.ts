@@ -1,10 +1,22 @@
+import { Args, Mutation, Resolver, Query, } from '@nestjs/graphql';
+import { TrackService } from '../services/track.service';
 
-const resolvers = {
-    Query: {
-        async traks(limit: any, offset: any, { dataSources }: any) {
-            return dataSources.tracksApi.getTracks(limit, offset);
-        }
+
+
+@Resolver('Track')
+export class TrackResolver {
+    constructor(private trackService: TrackService) { }
+
+    @Query('tracks')
+    async getAllBand(
+        @Args('limit', { defaultValue: 5 }) limit: number,
+        @Args('offset', { defaultValue: 0 }) offset: number) {
+        return this.trackService.getAllTrack(limit, offset);
     }
-}
 
-export default resolvers;
+    @Query('track')
+    async getBandByID(@Args('id') id: string) {
+        return this.trackService.getTrackByID(id);
+    }
+
+}
