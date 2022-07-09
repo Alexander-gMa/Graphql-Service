@@ -205,7 +205,7 @@ export interface Track {
 export interface User {
     id: string;
     firstName?: Nullable<string>;
-    secondName?: Nullable<string>;
+    lastName?: Nullable<string>;
     password?: Nullable<string>;
     email: string;
 }

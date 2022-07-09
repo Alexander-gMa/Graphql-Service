@@ -11,7 +11,7 @@ export class UsersService {
     }
 
     async register(user: UserInput) {
-        const res = await this.userInstance.post<UserResponse>(`/register`, user);
+        const res = await this.userInstance.post<UserResponse>(`/register`, { ...user });
 
         return res.data;
     }
