@@ -34,4 +34,11 @@ export class ArtistResolver {
         return await this.artistService.updateArtist(id, token, artist);
     }
 
+    @Mutation('deleteArtist')
+    async delete(
+        @Args('id') id: string,
+        @Context('token') token: string,) {
+        return await this.artistService.deleteArtist(id, token);
+    }
+
 }

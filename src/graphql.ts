@@ -76,7 +76,7 @@ export interface DEL {
 export interface IMutation {
     createArtist(artist: CreateArtistInput): Nullable<Artist> | Promise<Nullable<Artist>>;
     updateArtist(id: string, artist: UpdateArtistInput): Nullable<Artist> | Promise<Nullable<Artist>>;
-    deleteExistingArtist(id: string): Nullable<DEL> | Promise<Nullable<DEL>>;
+    deleteArtist(id: string): Nullable<DEL> | Promise<Nullable<DEL>>;
     register(user: UserInput): Nullable<User> | Promise<Nullable<User>>;
 }
 

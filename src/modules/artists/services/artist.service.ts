@@ -33,6 +33,7 @@ export class ArtistService {
                 },
             },
         );
+
         return res.data
     }
 
@@ -44,7 +45,19 @@ export class ArtistService {
                     Authorization: token,
                 },
             },
-        )
+        );
+
+        return res.data
+    }
+
+    async deleteArtist(id: string, token: string) {
+        const res = await this.artistInstance.delete(`/${id}`,
+            {
+                headers: {
+                    Authorization: token,
+                },
+            },
+        );
 
         return res.data
     }
