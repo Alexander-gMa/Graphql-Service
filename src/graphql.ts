@@ -59,6 +59,26 @@ export interface MemberInput {
     artistId: string;
 }
 
+export interface CreateTrackInput {
+    title: string;
+    duration?: Nullable<number>;
+    released?: Nullable<number>;
+    albumId?: Nullable<string>;
+    bandsIds?: Nullable<string[]>;
+    artistsIds?: Nullable<string[]>;
+    genresIds?: Nullable<string[]>;
+}
+
+export interface UpdateTrackInput {
+    title?: Nullable<string>;
+    duration?: Nullable<number>;
+    released?: Nullable<number>;
+    albumId?: Nullable<string>;
+    bandsIds?: Nullable<string[]>;
+    artistsIds?: Nullable<string[]>;
+    genresIds?: Nullable<string[]>;
+}
+
 export interface UserInput {
     firstName: string;
     lastName: string;
@@ -119,6 +139,9 @@ export interface IMutation {
     createGenre(genre?: Nullable<CreateGenreInput>): Nullable<Genre> | Promise<Nullable<Genre>>;
     updateGenre(id: string, genre?: Nullable<UpdateGenreInput>): Nullable<Genre> | Promise<Nullable<Genre>>;
     deleteGenre(id: string): Nullable<DEL> | Promise<Nullable<DEL>>;
+    createTrack(track: CreateTrackInput): Nullable<Track> | Promise<Nullable<Track>>;
+    updateTrack(id: string, track: UpdateTrackInput): Nullable<Track> | Promise<Nullable<Track>>;
+    deleteTrack(id: string): Nullable<DEL> | Promise<Nullable<DEL>>;
     register(user: UserInput): Nullable<User> | Promise<Nullable<User>>;
 }
 
@@ -148,6 +171,7 @@ export interface Member {
 export interface Track {
     _id: string;
     title: string;
+    album?: Nullable<Album>;
     artists?: Nullable<Nullable<Artist>[]>;
     bands?: Nullable<Nullable<Band>[]>;
     duration?: Nullable<number>;

@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { Injectable } from '@nestjs/common';
+import { CreateTrackInput, UpdateTrackInput } from 'src/graphql';
 
 @Injectable()
 export class TrackService {
@@ -18,6 +19,45 @@ export class TrackService {
 
     async getTrackByID(id: string) {
         const res = await this.trackInstance.get(`/${id}`)
+
+        return res.data
+    }
+
+    async createTrack(token: string, input: CreateTrackInput,) {
+        const res = await this.trackInstance.post(
+            '/',
+            { ...input },
+            {
+                headers: {
+                    Authorization: token,
+                },
+            },
+        );
+
+        return res.data
+    }
+
+    async updateTrack(id: string, token: string, input: UpdateTrackInput) {
+        const res = await this.trackInstance.put(`/${id}`,
+            { ...input },
+            {
+                headers: {
+                    Authorization: token,
+                },
+            },
+        );
+
+        return res.data
+    }
+
+    async deleteTrack(id: string, token: string) {
+        const res = await this.trackInstance.delete(`/${id}`,
+            {
+                headers: {
+                    Authorization: token,
+                },
+            },
+        );
 
         return res.data
     }
