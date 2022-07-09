@@ -23,6 +23,22 @@ export interface UpdateArtistInput {
     bandsIds?: Nullable<Nullable<string>[]>;
 }
 
+export interface CreateBandInput {
+    origin?: Nullable<string>;
+    website?: Nullable<string>;
+    name: string;
+    members?: Nullable<MemberInput[]>;
+    genresIds?: Nullable<string[]>;
+}
+
+export interface UpdateBandInput {
+    origin?: Nullable<string>;
+    website?: Nullable<string>;
+    name?: Nullable<string>;
+    members?: Nullable<MemberInput[]>;
+    genresIds?: Nullable<string[]>;
+}
+
 export interface CreateGenreInput {
     name: string;
     description?: Nullable<string>;
@@ -35,6 +51,12 @@ export interface UpdateGenreInput {
     description?: Nullable<string>;
     country?: Nullable<string>;
     year?: Nullable<string>;
+}
+
+export interface MemberInput {
+    instrument?: Nullable<string>;
+    years?: Nullable<number[]>;
+    artistId: string;
 }
 
 export interface UserInput {
@@ -91,6 +113,9 @@ export interface IMutation {
     createArtist(artist: CreateArtistInput): Nullable<Artist> | Promise<Nullable<Artist>>;
     updateArtist(id: string, artist: UpdateArtistInput): Nullable<Artist> | Promise<Nullable<Artist>>;
     deleteArtist(id: string): Nullable<DEL> | Promise<Nullable<DEL>>;
+    createBand(band?: Nullable<CreateBandInput>): Nullable<Band> | Promise<Nullable<Band>>;
+    updateBand(id: string, band?: Nullable<UpdateBandInput>): Nullable<Band> | Promise<Nullable<Band>>;
+    deleteBand(id: string): Nullable<DEL> | Promise<Nullable<DEL>>;
     createGenre(genre?: Nullable<CreateGenreInput>): Nullable<Genre> | Promise<Nullable<Genre>>;
     updateGenre(id: string, genre?: Nullable<UpdateGenreInput>): Nullable<Genre> | Promise<Nullable<Genre>>;
     deleteGenre(id: string): Nullable<DEL> | Promise<Nullable<DEL>>;
