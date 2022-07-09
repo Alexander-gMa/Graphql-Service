@@ -1,10 +1,20 @@
 import { Args, Mutation, Resolver, Query, Context, ResolveField, Parent } from '@nestjs/graphql';
 import { TrackService } from '../services/track.service';
 import { CreateTrackInput, UpdateTrackInput } from 'src/graphql';
+import { AlbumService } from 'src/modules/albums/services/album.service';
+import { ArtistService } from 'src/modules/artists/services/artist.service';
+import { BandService } from 'src/modules/bands/services/band.service';
+import { GenreService } from 'src/modules/genres/services/genre.service';
 
 @Resolver('Track')
 export class TrackResolver {
-    constructor(private trackService: TrackService) { }
+    constructor(
+        private trackService: TrackService,
+        private albumService: AlbumService,
+        private artistService: ArtistService,
+        private bandService: BandService,
+        private genreService: GenreService,
+    ) { }
 
     @Query('tracks')
     async getAllBand(
@@ -42,7 +52,41 @@ export class TrackResolver {
 
     @ResolveField()
     async id(@Parent() track): Promise<string> {
-      return track._id;
+        return track._id;
     }
 
+    @Resolver()
+    @ResolveField()
+    async album(
+        @Parent() track,
+    ) {
+        if (!track.albumId) return 'no albums';
+        return await this.albumService.getAlbumByID(track.albumId);
+    }
+
+    @Resolver()
+    @ResolveField()
+    async artists(
+        @Parent() track,
+    ) {
+        return await Promise.all(track.artistsIds.map(id => this.artistService.getArtistByID(id)));
+    }
+
+    @Resolver()
+    @ResolveField()
+    async bands(
+        @Parent() track,
+    ) {
+        return await Promise.all(track.bandsIds.map((id) => this.bandService.getBandByID(id)));
+    }
+
+    @Resolver()
+    @ResolveField()
+    async genres(
+        @Parent() track,
+    ) {
+        const { genresIds } = track;
+        const filter = genresIds.filter((el)=> el!== 123)
+        return await Promise.all(filter.map((id) => this.genreService.getGenreByID(id)));
+    }
 }
