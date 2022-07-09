@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { Injectable } from '@nestjs/common';
+import { CreateAlbumInput, UpdateAlbumInput } from 'src/graphql';
 
 @Injectable()
 export class AlbumService {
@@ -18,6 +19,45 @@ export class AlbumService {
 
     async getAlbumByID(id: string) {
         const res = await this.albumInstance.get(`/${id}`)
+
+        return res.data
+    }
+
+    async createTrack(token: string, input: CreateAlbumInput,) {
+        const res = await this.albumInstance.post(
+            '/',
+            { ...input },
+            {
+                headers: {
+                    Authorization: token,
+                },
+            },
+        );
+
+        return res.data
+    }
+
+    async updateTrack(id: string, token: string, input: UpdateAlbumInput) {
+        const res = await this.albumInstance.put(`/${id}`,
+            { ...input },
+            {
+                headers: {
+                    Authorization: token,
+                },
+            },
+        );
+
+        return res.data
+    }
+
+    async deleteTrack(id: string, token: string) {
+        const res = await this.albumInstance.delete(`/${id}`,
+            {
+                headers: {
+                    Authorization: token,
+                },
+            },
+        );
 
         return res.data
     }
