@@ -10,7 +10,7 @@
 export interface CreateArtist {
     firstName: string;
     secondName: string;
-    country?: Nullable<string>;
+    country: string;
     instruments?: Nullable<Nullable<string>[]>;
     bandsIds?: Nullable<Nullable<string>[]>;
 }
@@ -57,7 +57,7 @@ export interface IQuery {
 }
 
 export interface Artist {
-    id: string;
+    _id: string;
     firstName?: Nullable<string>;
     secondName?: Nullable<string>;
     middleName?: Nullable<string>;
@@ -68,14 +68,20 @@ export interface Artist {
     instruments?: Nullable<Nullable<string>[]>;
 }
 
+export interface DEL {
+    acknowledged?: Nullable<boolean>;
+    deletedCount?: Nullable<number>;
+}
+
 export interface IMutation {
     regNewArtist(newArtist: CreateArtist): Nullable<Artist> | Promise<Nullable<Artist>>;
     updateExistingArtist(id: string, artist: UpdateArtist): Nullable<Artist> | Promise<Nullable<Artist>>;
+    deleteExistingArtist(id: string): Nullable<DEL> | Promise<Nullable<DEL>>;
     register(user: UserInput): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export interface Band {
-    id: string;
+    _id: string;
     name?: Nullable<string>;
     origin?: Nullable<string>;
     members?: Nullable<Nullable<Member>[]>;
@@ -84,7 +90,7 @@ export interface Band {
 }
 
 export interface Genre {
-    id: string;
+    _id: string;
     name?: Nullable<string>;
     description?: Nullable<string>;
     country?: Nullable<string>;
@@ -98,7 +104,7 @@ export interface Member {
 }
 
 export interface Track {
-    id: string;
+    _id: string;
     title: string;
     artists?: Nullable<Nullable<Artist>[]>;
     bands?: Nullable<Nullable<Band>[]>;
@@ -108,7 +114,7 @@ export interface Track {
 }
 
 export interface User {
-    id: string;
+    _id: string;
     firstName?: Nullable<string>;
     secondName?: Nullable<string>;
     password?: Nullable<string>;

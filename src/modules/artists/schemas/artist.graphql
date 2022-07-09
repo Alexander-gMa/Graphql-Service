@@ -10,10 +10,15 @@ type Artist {
   instruments: [String]
 }
 
+type DEL {
+  acknowledged: Boolean
+  deletedCount: Int
+}
+
 input CreateArtist {
   firstName: String!
   secondName: String!
-  country: String
+  country: String!
   instruments: [String]
   bandsIds: [ID]
 }
@@ -26,6 +31,7 @@ input UpdateArtist {
   bandsIds: [ID]
 }
 
+
 type Query {
   artist(id: ID!): Artist
   artists(limit: Int, offset: Int): [Artist]
@@ -34,5 +40,5 @@ type Query {
 type Mutation {
   regNewArtist(newArtist: CreateArtist!): Artist
   updateExistingArtist(id:ID!, artist: UpdateArtist!): Artist
-#   deleteExistingArtist(id:ID!): DEL
+  deleteExistingArtist(id:ID!): DEL
 }

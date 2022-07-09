@@ -17,9 +17,9 @@ import { AlbumModule } from './modules/albums/album.module';
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
       },
-      context: ({ req }) => {
+      context: ({ req }: IReq) => {
         const token = req.headers.authorization || '';
-        return { token, req };
+        return { token };
       },
     }),
     UsersModule,

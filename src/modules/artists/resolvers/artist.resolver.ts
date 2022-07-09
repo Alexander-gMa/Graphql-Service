@@ -1,4 +1,5 @@
-import { Args, Mutation, Resolver, Query, } from '@nestjs/graphql';
+import { Args, Mutation, Resolver, Query, Context } from '@nestjs/graphql';
+import { CreateArtist } from 'src/graphql';
 import { ArtistService } from '../services/artist.service';
 
 
@@ -16,6 +17,14 @@ export class ArtistResolver {
     @Query('artist')
     async getArtistByID(@Args('id') id: string) {
         return this.artistService.getArtistByID(id);
+    }
+
+    @Mutation('regNewArtist')
+    async create(
+        @Args('newArtist') newArtist: CreateArtist,
+        @Context('token') token: string,
+    ) {
+        return await this.artistService.createArtist(token, newArtist);
     }
 
 }
