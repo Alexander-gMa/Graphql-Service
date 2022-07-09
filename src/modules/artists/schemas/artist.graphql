@@ -18,17 +18,23 @@ type DEL {
 input CreateArtistInput {
   firstName: String!
   secondName: String!
+  middleName: String
+  birthDate: String
+  birthPlace: String
   country: String!
-  instruments: [String]
-  bandsIds: [ID]
+  instruments: [String!]
+  bandsIds: [ID!]
 }
 
 input UpdateArtistInput {
   firstName: String
   secondName: String
+  middleName: String
+  birthDate: String
+  birthPlace: String
   country: String
-  instruments: [String]
-  bandsIds: [ID]
+  instruments: [String!]
+  bandsIds: [ID!]
 }
 
 

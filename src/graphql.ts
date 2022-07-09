@@ -30,17 +30,23 @@ export interface UpdateAlbumInput {
 export interface CreateArtistInput {
     firstName: string;
     secondName: string;
+    middleName?: Nullable<string>;
+    birthDate?: Nullable<string>;
+    birthPlace?: Nullable<string>;
     country: string;
-    instruments?: Nullable<Nullable<string>[]>;
-    bandsIds?: Nullable<Nullable<string>[]>;
+    instruments?: Nullable<string[]>;
+    bandsIds?: Nullable<string[]>;
 }
 
 export interface UpdateArtistInput {
     firstName?: Nullable<string>;
     secondName?: Nullable<string>;
+    middleName?: Nullable<string>;
+    birthDate?: Nullable<string>;
+    birthPlace?: Nullable<string>;
     country?: Nullable<string>;
-    instruments?: Nullable<Nullable<string>[]>;
-    bandsIds?: Nullable<Nullable<string>[]>;
+    instruments?: Nullable<string[]>;
+    bandsIds?: Nullable<string[]>;
 }
 
 export interface CreateBandInput {

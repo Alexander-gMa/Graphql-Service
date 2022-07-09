@@ -1,11 +1,15 @@
 import { Args, Mutation, Resolver, Query, Context, ResolveField, Parent } from '@nestjs/graphql';
 import { CreateArtistInput, UpdateArtistInput } from 'src/graphql';
+import { BandService } from 'src/modules/bands/services/band.service';
 import { ArtistService } from '../services/artist.service';
 
 
 @Resolver('Artist')
 export class ArtistResolver {
-    constructor(private artistService: ArtistService) { }
+    constructor(
+        private artistService: ArtistService,
+        private bandService: BandService,
+    ) { }
 
     @Query('artists')
     async getAllArtist(
@@ -44,6 +48,19 @@ export class ArtistResolver {
     @ResolveField()
     async id(@Parent() artist): Promise<string> {
         return artist._id;
+    }
+
+    @Resolver()
+    @ResolveField()
+    async bands(
+        @Parent() artist,
+    ) {
+        return await Promise.all(artist.bandsIds.map((id) => this.bandService.getBandByID(id)));
+    }
+
+    @ResolveField()
+    async instruments(@Parent() artist): Promise<string> {
+        return await artist.instruments.join(', ');
     }
 
 }
