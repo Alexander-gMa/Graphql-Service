@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { Injectable } from '@nestjs/common';
-import { CreateArtist } from 'src/graphql';
+import { CreateArtistInput, UpdateArtistInput } from 'src/graphql';
 
 @Injectable()
 export class ArtistService {
@@ -23,10 +23,7 @@ export class ArtistService {
         return res.data
     }
 
-    async createArtist(
-        token: string,
-        input: CreateArtist,
-    ) {
+    async createArtist(token: string, input: CreateArtistInput,) {
         const res = await this.artistInstance.post(
             '/',
             { ...input },
@@ -36,6 +33,19 @@ export class ArtistService {
                 },
             },
         );
+        return res.data
+    }
+
+    async updateArtist(id: string, token: string, input: UpdateArtistInput) {
+        const res = await this.artistInstance.put(`/${id}`,
+            { ...input },
+            {
+                headers: {
+                    Authorization: token,
+                },
+            },
+        )
+
         return res.data
     }
 

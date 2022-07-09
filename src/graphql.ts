@@ -7,7 +7,7 @@
 
 /* tslint:disable */
 /* eslint-disable */
-export interface CreateArtist {
+export interface CreateArtistInput {
     firstName: string;
     secondName: string;
     country: string;
@@ -15,7 +15,7 @@ export interface CreateArtist {
     bandsIds?: Nullable<Nullable<string>[]>;
 }
 
-export interface UpdateArtist {
+export interface UpdateArtistInput {
     firstName?: Nullable<string>;
     secondName?: Nullable<string>;
     country?: Nullable<string>;
@@ -74,8 +74,8 @@ export interface DEL {
 }
 
 export interface IMutation {
-    regNewArtist(newArtist: CreateArtist): Nullable<Artist> | Promise<Nullable<Artist>>;
-    updateExistingArtist(id: string, artist: UpdateArtist): Nullable<Artist> | Promise<Nullable<Artist>>;
+    createArtist(artist: CreateArtistInput): Nullable<Artist> | Promise<Nullable<Artist>>;
+    updateArtist(id: string, artist: UpdateArtistInput): Nullable<Artist> | Promise<Nullable<Artist>>;
     deleteExistingArtist(id: string): Nullable<DEL> | Promise<Nullable<DEL>>;
     register(user: UserInput): Nullable<User> | Promise<Nullable<User>>;
 }

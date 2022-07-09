@@ -15,7 +15,7 @@ type DEL {
   deletedCount: Int
 }
 
-input CreateArtist {
+input CreateArtistInput {
   firstName: String!
   secondName: String!
   country: String!
@@ -23,7 +23,7 @@ input CreateArtist {
   bandsIds: [ID]
 }
 
-input UpdateArtist {
+input UpdateArtistInput {
   firstName: String
   secondName: String
   country: String
@@ -38,7 +38,7 @@ type Query {
 }
 
 type Mutation {
-  regNewArtist(newArtist: CreateArtist!): Artist
-  updateExistingArtist(id:ID!, artist: UpdateArtist!): Artist
+  createArtist(artist: CreateArtistInput!): Artist
+  updateArtist(id:ID!, artist: UpdateArtistInput!): Artist
   deleteExistingArtist(id:ID!): DEL
 }
