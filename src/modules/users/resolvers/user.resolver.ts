@@ -1,4 +1,4 @@
-import { Args, Mutation, Resolver, Query, } from '@nestjs/graphql';
+import { Args, Mutation, Resolver, Query, ResolveField, Parent } from '@nestjs/graphql';
 
 import { UsersService } from '../services/users.service';
 import { UserInput } from '../schemas/user.interface'
@@ -24,4 +24,8 @@ export class UsersResolver {
         return this.usersService.register(user);
     }
 
+    @ResolveField()
+    async id(@Parent() user): Promise<string> {
+        return user._id;
+    }
 }

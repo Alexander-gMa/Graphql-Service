@@ -1,4 +1,4 @@
-import { Args, Mutation, Resolver, Query, Context } from '@nestjs/graphql';
+import { Args, Mutation, Resolver, Query, Context, ResolveField, Parent } from '@nestjs/graphql';
 import { TrackService } from '../services/track.service';
 import { CreateTrackInput, UpdateTrackInput } from 'src/graphql';
 
@@ -38,6 +38,11 @@ export class TrackResolver {
         @Args('id') id: string,
         @Context('token') token: string,) {
         return await this.trackService.deleteTrack(id, token);
+    }
+
+    @ResolveField()
+    async id(@Parent() track): Promise<string> {
+      return track._id;
     }
 
 }

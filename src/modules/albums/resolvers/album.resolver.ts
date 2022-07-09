@@ -1,4 +1,4 @@
-import { Args, Mutation, Resolver, Query, Context } from '@nestjs/graphql';
+import { Args, Mutation, Resolver, Query, Context, ResolveField, Parent } from '@nestjs/graphql';
 import { AlbumService } from '../services/album.service';
 import { CreateAlbumInput, UpdateAlbumInput } from 'src/graphql';
 
@@ -38,6 +38,11 @@ export class AlbumResolver {
         @Args('id') id: string,
         @Context('token') token: string,) {
         return await this.albumService.deleteTrack(id, token);
+    }
+
+    @ResolveField()
+    async id(@Parent() album): Promise<string> {
+        return album._id;
     }
 
 }

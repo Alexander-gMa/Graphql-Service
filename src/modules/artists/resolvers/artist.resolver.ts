@@ -1,4 +1,4 @@
-import { Args, Mutation, Resolver, Query, Context } from '@nestjs/graphql';
+import { Args, Mutation, Resolver, Query, Context, ResolveField, Parent } from '@nestjs/graphql';
 import { CreateArtistInput, UpdateArtistInput } from 'src/graphql';
 import { ArtistService } from '../services/artist.service';
 
@@ -39,6 +39,11 @@ export class ArtistResolver {
         @Args('id') id: string,
         @Context('token') token: string,) {
         return await this.artistService.deleteArtist(id, token);
+    }
+
+    @ResolveField()
+    async id(@Parent() artist): Promise<string> {
+        return artist._id;
     }
 
 }

@@ -1,4 +1,4 @@
-import { Args, Mutation, Resolver, Query, Context } from '@nestjs/graphql';
+import { Args, Mutation, Resolver, Query, Context, ResolveField, Parent } from '@nestjs/graphql';
 import { BandService } from '../services/band.service';
 import { CreateBandInput, UpdateBandInput } from 'src/graphql';
 
@@ -17,7 +17,7 @@ export class BandResolver {
     async getBandByID(@Args('id') id: string) {
         return this.bandService.getBandByID(id);
     }
-    
+
     @Mutation('createBand')
     async create(
         @Args('band') band: CreateBandInput,
@@ -33,12 +33,17 @@ export class BandResolver {
         @Context('token') token: string,) {
         return await this.bandService.updateBand(id, token, band);
     }
-    
+
     @Mutation('deleteBand')
     async delete(
         @Args('id') id: string,
         @Context('token') token: string,) {
         return await this.bandService.deleteBand(id, token);
+    }
+
+    @ResolveField()
+    async id(@Parent() band): Promise<string> {
+        return band._id;
     }
 
 }

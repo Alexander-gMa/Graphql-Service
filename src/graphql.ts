@@ -107,7 +107,7 @@ export interface UserInput {
 }
 
 export interface Album {
-    _id: string;
+    id: string;
     name?: Nullable<string>;
     released?: Nullable<number>;
     artists?: Nullable<Nullable<Artist>[]>;
@@ -152,7 +152,7 @@ export interface IMutation {
 }
 
 export interface Artist {
-    _id: string;
+    id: string;
     firstName?: Nullable<string>;
     secondName?: Nullable<string>;
     middleName?: Nullable<string>;
@@ -169,7 +169,7 @@ export interface DEL {
 }
 
 export interface Band {
-    _id: string;
+    id: string;
     name?: Nullable<string>;
     origin?: Nullable<string>;
     members?: Nullable<Nullable<Member>[]>;
@@ -178,7 +178,7 @@ export interface Band {
 }
 
 export interface Genre {
-    _id: string;
+    id: string;
     name?: Nullable<string>;
     description?: Nullable<string>;
     country?: Nullable<string>;
@@ -192,7 +192,7 @@ export interface Member {
 }
 
 export interface Track {
-    _id: string;
+    id: string;
     title: string;
     album?: Nullable<Album>;
     artists?: Nullable<Nullable<Artist>[]>;
@@ -203,7 +203,7 @@ export interface Track {
 }
 
 export interface User {
-    _id: string;
+    id: string;
     firstName?: Nullable<string>;
     secondName?: Nullable<string>;
     password?: Nullable<string>;

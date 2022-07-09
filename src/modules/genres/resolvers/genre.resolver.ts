@@ -1,4 +1,4 @@
-import { Args, Mutation, Resolver, Query, Context } from '@nestjs/graphql';
+import { Args, Mutation, Resolver, Query, Context, ResolveField, Parent } from '@nestjs/graphql';
 import { GenreService } from '../services/genre.service';
 import { CreateGenreInput, UpdateGenreInput } from 'src/graphql';
 
@@ -40,5 +40,10 @@ export class GenreResolver {
         @Args('id') id: string,
         @Context('token') token: string,) {
         return await this.genreService.deleteGenre(id, token);
+    }
+
+    @ResolveField()
+    async id(@Parent() genre): Promise<string> {
+      return genre._id;
     }
 }
