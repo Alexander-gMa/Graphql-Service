@@ -1,8 +1,5 @@
 type Member {
   artist: Artist
-  firstName: String
-  secondName: String
-  middleName: String
   instrument: String
   years: String
 }

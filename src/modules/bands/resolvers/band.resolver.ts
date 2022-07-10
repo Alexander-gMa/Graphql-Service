@@ -69,21 +69,13 @@ export class BandResolver {
         const { members } = band;
         const found = members.some((el) => el.artistId)
         if (!found) return [];
-        return (
-            await Promise.allSettled(
-                members.map((member: MemberInput) => {
-                    if(!member.artistId) return null
-                    this.artistService.getArtistByID(member.artistId)
-                }),
-            )
-        ).map((artist, i) => {
-            return {
-                ...artist,
+        return members
+            .map((member) => this.artistService.getArtistByID(member.artistId))
+            .map((artist, i) => ({
+                artist,
                 instrument: members[i].instrument,
                 years: members[i].years,
-                id: members[i].artist,
-            }
-        });
+            }));
     }
 
 }
