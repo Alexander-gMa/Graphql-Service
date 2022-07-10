@@ -20,7 +20,6 @@ export class FavouriteResolver {
     @Query('favourites')
     async getAllGenre(
         @Context('token') token: string,) {
-        console.log(token);
         return this.favouriteService.getAllFavourites(token);
     }
 
@@ -28,7 +27,7 @@ export class FavouriteResolver {
     @ResolveField()
     async tracks(@Parent() favourites) {
         const { tracksIds } = favourites;
-        if(!tracksIds) return [];
+        if (!tracksIds) return [];
         return tracksIds.map((id) => this.trackService.getTrackByID(id));
     }
 
@@ -36,23 +35,51 @@ export class FavouriteResolver {
     @ResolveField()
     async artists(@Parent() favourites) {
         const { artistsIds } = favourites;
-        if(!artistsIds) return [];
+        if (!artistsIds) return [];
         return artistsIds.map((id) => this.artistService.getArtistByID(id));
     }
 
     @Resolver()
     @ResolveField()
     async bands(@Parent() favourites) {
-      const { bandsIds } = favourites;
-      if(!bandsIds) return [];
-      return bandsIds.map((id) => this.bandService.getBandByID(id));
+        const { bandsIds } = favourites;
+        if (!bandsIds) return [];
+        return bandsIds.map((id) => this.bandService.getBandByID(id));
     }
-  
+
     @Resolver()
     @ResolveField()
     async genres(@Parent() favourites) {
-      const { genresIds } = favourites;
-      if(!genresIds) return [];
-      return genresIds.map((id) => this.genreService.getGenreByID(id));
+        const { genresIds } = favourites;
+        if (!genresIds) return [];
+        return genresIds.map((id) => this.genreService.getGenreByID(id));
+    }
+
+    @Mutation('addTrack')
+    addTrackToFavourites(
+        @Args('id') id: string,
+        @Context('token') token: string,) {
+        return this.favouriteService.add('tracks', id, token);
+    }
+
+    @Mutation('addBand')
+    addBandToFavourites(
+        @Args('id') id: string,
+        @Context('token') token: string,) {
+        return this.favouriteService.add('bands', id, token);
+    }
+
+    @Mutation('addArtist')
+    addArtistToFavourites(
+        @Args('id') id: string,
+        @Context('token') token: string,) {
+        return this.favouriteService.add('artists', id, token);
+    }
+
+    @Mutation('addGenre')
+    addGenreToFavourites(
+        @Args('id') id: string,
+        @Context('token') token: string,) {
+        return this.favouriteService.add('genres', id, token);
     }
 }

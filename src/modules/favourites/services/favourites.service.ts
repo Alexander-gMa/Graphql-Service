@@ -16,7 +16,6 @@ export class FavouriteService {
                 Authorization: token,
             },
         })
-        console.log(res);
         return res.data
     }
 
