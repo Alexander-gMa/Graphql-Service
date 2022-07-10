@@ -58,9 +58,4 @@ export class ArtistResolver {
         return await Promise.all(artist.bandsIds.map((id) => this.bandService.getBandByID(id)));
     }
 
-    @ResolveField()
-    async instruments(@Parent() artist): Promise<string> {
-        return await artist.instruments.join(', ');
-    }
-
 }
