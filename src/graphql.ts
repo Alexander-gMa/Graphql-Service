@@ -149,10 +149,14 @@ export interface IMutation {
     createBand(band?: Nullable<CreateBandInput>): Nullable<Band> | Promise<Nullable<Band>>;
     updateBand(id: string, band?: Nullable<UpdateBandInput>): Nullable<Band> | Promise<Nullable<Band>>;
     deleteBand(id: string): Nullable<DEL> | Promise<Nullable<DEL>>;
-    addTrack(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
-    addBand(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
-    addArtist(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
-    addGenre(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    addTrackToFavourites(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    addBandToFavourites(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    addArtistToFavourites(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    addGenreToFavourites(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    removeTrackFromFavourites(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    removeBandFromFavourites(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    removeArtistFromFavourites(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    removeGenreFromFavourites(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
     createGenre(genre?: Nullable<CreateGenreInput>): Nullable<Genre> | Promise<Nullable<Genre>>;
     updateGenre(id: string, genre?: Nullable<UpdateGenreInput>): Nullable<Genre> | Promise<Nullable<Genre>>;
     deleteGenre(id: string): Nullable<DEL> | Promise<Nullable<DEL>>;

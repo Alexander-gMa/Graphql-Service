@@ -12,8 +12,12 @@ type Query {
 }
 
 type Mutation {
-  addTrack(id: ID!): Favourites
-  addBand(id: ID!): Favourites
-  addArtist(id: ID!): Favourites
-  addGenre(id: ID!): Favourites
+  addTrackToFavourites(id: ID!): Favourites
+  addBandToFavourites(id: ID!): Favourites
+  addArtistToFavourites(id: ID!): Favourites
+  addGenreToFavourites(id: ID!): Favourites
+  removeTrackFromFavourites(id: ID!): Favourites
+  removeBandFromFavourites(id: ID!): Favourites
+  removeArtistFromFavourites(id: ID!): Favourites
+  removeGenreFromFavourites(id: ID!): Favourites
 }

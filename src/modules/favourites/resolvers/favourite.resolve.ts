@@ -55,31 +55,58 @@ export class FavouriteResolver {
         return genresIds.map((id) => this.genreService.getGenreByID(id));
     }
 
-    @Mutation('addTrack')
+    @Mutation('addTrackToFavourites')
     addTrackToFavourites(
         @Args('id') id: string,
         @Context('token') token: string,) {
         return this.favouriteService.add('tracks', id, token);
     }
 
-    @Mutation('addBand')
+    @Mutation('addBandToFavourites')
     addBandToFavourites(
         @Args('id') id: string,
         @Context('token') token: string,) {
         return this.favouriteService.add('bands', id, token);
     }
 
-    @Mutation('addArtist')
+    @Mutation('addArtistToFavourites')
     addArtistToFavourites(
         @Args('id') id: string,
         @Context('token') token: string,) {
         return this.favouriteService.add('artists', id, token);
     }
 
-    @Mutation('addGenre')
+    @Mutation('addGenreToFavourites')
     addGenreToFavourites(
         @Args('id') id: string,
         @Context('token') token: string,) {
         return this.favouriteService.add('genres', id, token);
+    }
+    @Mutation('removeTrackFromFavourites')
+    removeTrackFromFavourites(
+        @Args('id') id: string,
+        @Context('token') token: string,) {
+        return this.favouriteService.remove('tracks', id, token);
+    }
+
+    @Mutation('removeBandFromFavourites')
+    removeBandFromFavourites(
+        @Args('id') id: string,
+        @Context('token') token: string,) {
+        return this.favouriteService.remove('bands', id, token);
+    }
+
+    @Mutation('removeArtistFromFavourites')
+    removeArtistFromFavourites(
+        @Args('id') id: string,
+        @Context('token') token: string,) {
+        return this.favouriteService.remove('artists', id, token);
+    }
+
+    @Mutation('removeGenreFromFavourites')
+    removeGenreFromFavourites(
+        @Args('id') id: string,
+        @Context('token') token: string,) {
+        return this.favouriteService.remove('genres', id, token);
     }
 }
