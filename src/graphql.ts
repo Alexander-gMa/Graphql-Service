@@ -130,6 +130,7 @@ export interface IQuery {
     artists(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Artist>[]> | Promise<Nullable<Nullable<Artist>[]>>;
     band(id: string): Nullable<Band> | Promise<Nullable<Band>>;
     bands(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Band>[]> | Promise<Nullable<Nullable<Band>[]>>;
+    favourites(): Nullable<Favourites> | Promise<Nullable<Favourites>>;
     genre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
     genres(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Genre>[]> | Promise<Nullable<Nullable<Genre>[]>>;
     track(id: string): Nullable<Track> | Promise<Nullable<Track>>;
@@ -148,6 +149,10 @@ export interface IMutation {
     createBand(band?: Nullable<CreateBandInput>): Nullable<Band> | Promise<Nullable<Band>>;
     updateBand(id: string, band?: Nullable<UpdateBandInput>): Nullable<Band> | Promise<Nullable<Band>>;
     deleteBand(id: string): Nullable<DEL> | Promise<Nullable<DEL>>;
+    addTrack(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    addBand(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    addArtist(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
+    addGenre(id: string): Nullable<Favourites> | Promise<Nullable<Favourites>>;
     createGenre(genre?: Nullable<CreateGenreInput>): Nullable<Genre> | Promise<Nullable<Genre>>;
     updateGenre(id: string, genre?: Nullable<UpdateGenreInput>): Nullable<Genre> | Promise<Nullable<Genre>>;
     deleteGenre(id: string): Nullable<DEL> | Promise<Nullable<DEL>>;
@@ -181,6 +186,15 @@ export interface Band {
     members?: Nullable<Nullable<Member>[]>;
     website?: Nullable<string>;
     genres?: Nullable<Nullable<Genre>[]>;
+}
+
+export interface Favourites {
+    id: string;
+    userId?: Nullable<string>;
+    bands?: Nullable<Nullable<Band>[]>;
+    genres?: Nullable<Nullable<Genre>[]>;
+    artists?: Nullable<Nullable<Artist>[]>;
+    tracks?: Nullable<Nullable<Track>[]>;
 }
 
 export interface Genre {
