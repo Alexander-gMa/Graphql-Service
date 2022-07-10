@@ -67,10 +67,14 @@ export class BandResolver {
         @Parent() band,
     ) {
         const { members } = band;
-        if(!members.artistId) return [];
+        const found = members.some((el) => el.artistId)
+        if (!found) return [];
         return (
-            await Promise.all(
-                members.map((member: MemberInput) => this.artistService.getArtistByID(member.artistId)),
+            await Promise.allSettled(
+                members.map((member: MemberInput) => {
+                    if(!member.artistId) return null
+                    this.artistService.getArtistByID(member.artistId)
+                }),
             )
         ).map((artist, i) => {
             return {
