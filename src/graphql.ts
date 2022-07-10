@@ -192,7 +192,10 @@ export interface Genre {
 }
 
 export interface Member {
-    artist?: Nullable<string>;
+    artist?: Nullable<Artist>;
+    firstName?: Nullable<string>;
+    secondName?: Nullable<string>;
+    middleName?: Nullable<string>;
     instrument?: Nullable<string>;
     years?: Nullable<string>;
 }
