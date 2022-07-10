@@ -19,4 +19,29 @@ export class FavouriteService {
         console.log(res);
         return res.data
     }
+
+    async add(type: string, id: string, token: any) {
+        const res = await this.favouriteInstance.put(`/add`,
+            { type: type, id },
+            {
+                headers: {
+                    Authorization: token,
+                },
+            },
+        );
+        return res.data
+    }
+
+    async remove(type: string, id: string, token: any) {
+        const res = await this.favouriteInstance.put(`/remove`,
+            { type: type, id },
+            {
+                headers: {
+                    Authorization: token,
+                },
+            },
+        );
+        return res.data
+    }
+
 }
