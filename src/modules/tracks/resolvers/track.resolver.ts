@@ -86,7 +86,8 @@ export class TrackResolver {
         @Parent() track,
     ) {
         const { genresIds } = track;
-        const filter = genresIds.filter((el)=> el!== 123)
+        if (!genresIds) return null;
+        const filter = genresIds.filter((el) => el !== 123)
         return await Promise.all(filter.map((id) => this.genreService.getGenreByID(id)));
     }
 }

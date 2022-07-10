@@ -55,6 +55,7 @@ export class BandResolver {
         @Parent() band,
     ) {
         const { genresIds } = band;
+        if (!genresIds) return null;
         const filter = genresIds.filter((el)=> el!== 123)
         return await Promise.all(filter.map((id) => this.genreService.getGenreByID(id)));
     }

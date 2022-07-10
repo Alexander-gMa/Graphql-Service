@@ -85,6 +85,7 @@ export class AlbumResolver {
         @Parent() album,
     ) {
         const { genresIds } = album;
+        if (!genresIds) return null;
         const filter = genresIds.filter((el)=> el!== 123)
         return await Promise.all(filter.map((id) => this.genreService.getGenreByID(id)));
     }
