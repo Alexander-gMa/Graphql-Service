@@ -93,7 +93,6 @@
 ```graphql
 query {
     artists(limit: 10, offset: 0) {
-        items {
             id
             firstName
             secondName
@@ -109,7 +108,6 @@ query {
                 }
             }
         }
-    }
 }
 ```
 2. Get one album by `id`
@@ -130,10 +128,13 @@ query {
 ```graphql
 mutation {
     register(
+    user:{
         firstName: "firstname", 
         lastName: "lastname", 
         email: "email@mail.com",
         password: "password"
+    }
+
     ) {
         id
         firstName
@@ -162,18 +163,14 @@ query {
 ```graphql
 mutation {
     createArtist(
-        newArtist: {
+        artist: {
             firstName: "firstName"
             secondName: "secondName"
             country: "country"
-            bandsIds: ["id1", "id2"]
         }) {
         id
         firstName
         secondName
-        bands {
-            id
-        }
     }
 }
 ```
